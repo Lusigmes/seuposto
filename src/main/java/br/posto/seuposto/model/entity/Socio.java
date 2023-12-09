@@ -2,6 +2,10 @@ package br.posto.seuposto.model.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +21,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "socio")
+@JsonIgnoreProperties("franquias")
 public class Socio{
 
     @Id
@@ -31,6 +36,7 @@ public class Socio{
     @Column(nullable = false)
     private float quota_participa;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Franquia> franquias;
 

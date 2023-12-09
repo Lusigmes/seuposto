@@ -13,9 +13,11 @@ import br.posto.seuposto.model.entity.Posto;
 @RepositoryRestResource(collectionResourceRel = "postos", path = "postos")
 public interface PostoRepository extends JpaRepository<Posto, Integer>{
 
-     @Query("select p from Posto p left join fetch p.franquias_associadas  where p.id = :id")
+     @Query("select p from Posto p left join fetch p.franquias_associadas f "+
+     "left join fetch p.proprietario left join fetch f.socio where p.id = :id")
     public Posto findPostoById(int id);
 
-    @Query("select p from Posto p left join fetch p.franquias_associadas ")
+    @Query("select p from Posto p left join fetch p.franquias_associadas f " + 
+            "left join fetch p.proprietario left join fetch f.socio")
     public List<Posto> findAllPostos();
 }

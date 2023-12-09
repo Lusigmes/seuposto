@@ -1,7 +1,11 @@
 package br.posto.seuposto.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,9 +31,11 @@ public class Franquia {
 
     //@Column(nullable = false)
     @ManyToOne
+    @JsonBackReference 
     private Socio socio;
 
     @ManyToOne
+    @JsonBackReference 
     private Posto posto;
 
     @NotBlank(message = "O nome da franquia é obrigatória")

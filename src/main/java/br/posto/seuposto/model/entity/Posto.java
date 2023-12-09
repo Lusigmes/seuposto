@@ -2,6 +2,9 @@ package br.posto.seuposto.model.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import br.posto.seuposto.model.entity.enums.EstadosBrasil;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -55,8 +58,8 @@ public class Posto {
     @Column(name= "estado", nullable = false)
     private EstadosBrasil estado;
 
-
-    @OneToMany(mappedBy = "posto", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference //se aqui for back reference e do outro lado managed reference, o json nao exibe essa propriedade
+    @OneToMany(mappedBy = "posto", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Franquia> franquias_associadas;
 /* 
 
