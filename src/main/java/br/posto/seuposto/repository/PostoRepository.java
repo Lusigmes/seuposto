@@ -18,6 +18,6 @@ public interface PostoRepository extends JpaRepository<Posto, Integer>{
     public Posto findPostoById(int id);
 
     @Query("select p from Posto p left join fetch p.franquias_associadas f " + 
-            "left join fetch p.proprietario left join fetch f.socio")
+            "left join fetch p.proprietario po left join fetch f.socio so left join fetch so.pessoa")
     public List<Posto> findAllPostos();
 }

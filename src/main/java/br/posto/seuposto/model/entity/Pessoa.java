@@ -2,6 +2,7 @@ package br.posto.seuposto.model.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.posto.seuposto.model.entity.enums.Sexo;
@@ -48,4 +49,16 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     @Column(name= "sexo", nullable = false)
     private Sexo sexo;
+
+    @JsonBackReference
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private Proprietario proprietario;
+
+    @JsonBackReference
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private Cliente cliente;
+
+    @JsonBackReference
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private Socio socio;
 }

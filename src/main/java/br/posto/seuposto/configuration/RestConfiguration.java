@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import br.posto.seuposto.model.entity.Pessoa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.metamodel.Type;
@@ -27,9 +26,7 @@ public class RestConfiguration implements RepositoryRestConfigurer, WebMvcConfig
             .allowedOrigins("*") // Permitir solicitações de todos os origens
             .allowedMethods("*") // Permitir os métodos HTTP especificados
             .allowedHeaders("*");
-        //config.exposeIdsFor("*".getClass());
-        //config.setBasePath("/api");
-       // config.exposeIdsFor(Pessoa.class);
+
        EntityManager em = entityManagerFactory.createEntityManager();
         config.exposeIdsFor(em.getMetamodel().getEntities().stream().map(Type::getJavaType).toArray(Class[]::new));
 

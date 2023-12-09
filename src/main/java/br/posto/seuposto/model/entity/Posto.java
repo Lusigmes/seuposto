@@ -37,6 +37,7 @@ public class Posto {
     private int id;
 
     @ManyToOne
+    @JsonManagedReference
     private Proprietario proprietario;
 
     @NotBlank(message = "O nome do posto é obrigatório")
