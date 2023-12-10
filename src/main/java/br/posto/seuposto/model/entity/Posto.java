@@ -25,11 +25,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Entity
 @Table(name = "posto")
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Data @NoArgsConstructor @AllArgsConstructor
 public class Posto {
     
     @Id
@@ -60,7 +58,7 @@ public class Posto {
     private EstadosBrasil estado;
 
     @JsonManagedReference //se aqui for back reference e do outro lado managed reference, o json nao exibe essa propriedade
-    @OneToMany(mappedBy = "posto", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "posto", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Franquia> franquias_associadas;
 /* 
 

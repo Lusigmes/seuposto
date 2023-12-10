@@ -18,18 +18,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "franquia")
+@Data @NoArgsConstructor @AllArgsConstructor
 public class Franquia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //@Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference 
     private Socio socio;

@@ -1,5 +1,7 @@
 package br.posto.seuposto.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,43 +13,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
-import br.posto.seuposto.model.entity.Franquia;
-import br.posto.seuposto.repository.FranquiaRepository;
+
+import br.posto.seuposto.model.entity.Socio;
+import br.posto.seuposto.repository.SocioRepository;
 
 @RestController
-@RequestMapping("/franquias")
-public class FranquiaController {
+@RequestMapping("/socios")
+public class SocioController {
     @Autowired
-    private FranquiaRepository franquiaRepository;
-
-        
+    private SocioRepository socioRepository;
 
     @CrossOrigin
     @GetMapping
-    public ResponseEntity<List<Franquia>> findAll() {
-        List<Franquia> franquias = franquiaRepository.findAll();
-        return ResponseEntity.ok(franquias);
+    public ResponseEntity<List<Socio>> findAll() {
+        List<Socio> socios = socioRepository.findAllSocios();
+        return ResponseEntity.ok(socios);
     }
     
     @CrossOrigin
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Franquia> findById(@PathVariable(value = "id")Integer id ) {
-        Franquia franquia = franquiaRepository.findFranquiaById(id);
-        return ResponseEntity.ok(franquia);
+    public ResponseEntity<Socio> findById(@PathVariable(value = "id")Integer id ) {
+        Socio Socio = socioRepository.findSocioById(id);
+        return ResponseEntity.ok(Socio);
     }
 
     @CrossOrigin
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Franquia> deleteById(@PathVariable(value = "id") Integer id) {
-        franquiaRepository.deleteById(id);
+    public ResponseEntity<Socio> deleteById(@PathVariable(value = "id") Integer id) {
+        socioRepository.deleteById(id);
       return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity<Franquia> save(@RequestBody Franquia franquia) {
-        Franquia savedFranquia = franquiaRepository.save(franquia);
-        return new ResponseEntity<>(savedFranquia, HttpStatus.CREATED);
+    public ResponseEntity<Socio> save(@RequestBody Socio socio) {
+        Socio savedSocio = socioRepository.save(socio);
+        return new ResponseEntity<>(savedSocio, HttpStatus.CREATED);
     }
 }
