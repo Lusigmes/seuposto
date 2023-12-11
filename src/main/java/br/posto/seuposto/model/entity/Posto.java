@@ -34,8 +34,8 @@ public class Posto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
     private Proprietario proprietario;
 
     @NotBlank(message = "O nome do posto é obrigatório")
@@ -57,7 +57,7 @@ public class Posto {
     @Column(name= "estado", nullable = false)
     private EstadosBrasil estado;
 
-    @JsonManagedReference //se aqui for back reference e do outro lado managed reference, o json nao exibe essa propriedade
+    @JsonBackReference //se aqui for back reference e do outro lado managed reference, o json nao exibe essa propriedade
     @OneToMany(mappedBy = "posto", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Franquia> franquias_associadas;
 /* 

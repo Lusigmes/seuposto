@@ -13,10 +13,11 @@ import br.posto.seuposto.model.entity.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
 
-   @Query("select c from Cliente c join fetch c.pessoa")
+   @Query("select c from Cliente c join fetch c.pessoa p left join fetch p.proprietario left join fetch p.socio")
     public List<Cliente> findAllClientes();
     
-    @Query("select c from Cliente c join fetch c.pessoa where c.id = :id")
+    @Query("select c from Cliente c " +
+    "join fetch c.pessoa p left join fetch p.proprietario left join fetch p.socio where c.id = :id")
     public Cliente findClienteById(@Param("id")int id);
 
 }

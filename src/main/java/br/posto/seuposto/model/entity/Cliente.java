@@ -27,7 +27,7 @@ public class Cliente{
     private int id;
 
     @JsonManagedReference
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
     

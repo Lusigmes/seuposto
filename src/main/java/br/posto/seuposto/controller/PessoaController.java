@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.posto.seuposto.model.entity.Pessoa;
-import br.posto.seuposto.model.entity.Proprietario;
 import br.posto.seuposto.repository.PessoaRepository;
-import br.posto.seuposto.repository.ProprietarioRepository;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -25,23 +22,10 @@ public class PessoaController {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    
-    //
-    @Autowired
-    private ProprietarioRepository proprietarioRepository;
-
-    @CrossOrigin
-    @GetMapping(value = "/prop")
-    public ResponseEntity<List<Proprietario>> findAllProp() {
-        List<Proprietario> proprietarios = proprietarioRepository.findAllProprietarios();
-        return ResponseEntity.ok(proprietarios);
-    }
-    //
-
     @CrossOrigin
     @GetMapping
     public ResponseEntity<List<Pessoa>> findAll() {
-        List<Pessoa> pessoas = pessoaRepository.findAll();
+        List<Pessoa> pessoas = pessoaRepository.findAllPessoas();
         return ResponseEntity.ok(pessoas);
     }
     

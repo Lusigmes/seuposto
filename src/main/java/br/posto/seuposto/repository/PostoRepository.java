@@ -15,7 +15,14 @@ public interface PostoRepository extends JpaRepository<Posto, Integer>{
      "left join fetch p.proprietario left join fetch f.socio where p.id = :id")
     public Posto findPostoById(int id);
 
-    @Query("select p from Posto p left join fetch p.franquias_associadas f " + 
-            "left join fetch p.proprietario po left join fetch f.socio so left join fetch so.pessoa")
+    /* @Query("select distinct p from Posto p " +
+    "left join fetch p.franquias_associadas f " +
+    "left join fetch p.proprietario pr " +
+    "left join fetch f.socio so " +
+    "left join fetch so.pessoa pe " +
+    "left join fetch pe.socio left join fetch pe.cliente") */
+    @Query("select p from Posto p " +
+    "left join fetch p.franquias_associadas f "+
+    "left join fetch f.socio so")
     public List<Posto> findAllPostos();
 }

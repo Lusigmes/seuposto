@@ -9,7 +9,7 @@ import br.posto.seuposto.model.entity.Franquia;
 @RepositoryRestResource(collectionResourceRel = "franquias", path = "franquias")
 public interface FranquiaRepository extends JpaRepository<Franquia, Integer>{
     
-    @Query("select f from Franquia f left join fetch f.posto left join fetch f.socio so left join fetch so.pessoa")
+    @Query("select f from Franquia f left join fetch f.posto")
     public List<Franquia> findAllFranquias();
 
     @Query("select f from Franquia f left join fetch f.posto where f.id = :id")

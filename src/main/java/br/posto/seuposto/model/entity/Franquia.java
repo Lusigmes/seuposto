@@ -2,6 +2,7 @@ package br.posto.seuposto.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,8 +28,8 @@ public class Franquia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference 
+    @ManyToOne(fetch = FetchType.LAZY)
     private Socio socio;
 
     @ManyToOne

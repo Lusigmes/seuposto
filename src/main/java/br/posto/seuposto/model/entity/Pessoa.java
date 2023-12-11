@@ -48,15 +48,15 @@ public class Pessoa {
     @Column(name= "sexo", nullable = false)
     private Sexo sexo;
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @JsonBackReference("proprietario")
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Proprietario proprietario;
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @JsonBackReference("cliente")
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cliente cliente;
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @JsonBackReference("socio")
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Socio socio;
 }

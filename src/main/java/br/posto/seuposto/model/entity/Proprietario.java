@@ -32,7 +32,7 @@ public class Proprietario{
     private int id;
 
     @JsonManagedReference
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
@@ -41,7 +41,7 @@ public class Proprietario{
     @Column(nullable = false, unique = true)
     private String cnpj;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Posto> postos; 
     
