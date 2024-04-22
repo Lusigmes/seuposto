@@ -12,13 +12,7 @@
 ```mermaid
 classDiagram
 
-  class Pessoa{
-    -Id: Integer
-    -Nome: String
-    -DataNascimento: Date
-    -Cpf: String
-    -Sexo: Sexo
-  }
+
   class Cliente {
     -Id: Integer
     -Numero_Cartap: Long
@@ -28,10 +22,14 @@ classDiagram
     -Id: Integer
     -Cnpj: String
   }
-  class Socio{
+  class Pessoa{
     -Id: Integer
-    -Quota_participaçao: Float
+    -Nome: String
+    -DataNascimento: Date
+    -Cpf: String
+    -Sexo: Sexo
   }
+
   class Posto{
     -Id: Integer
     -Nome: String
@@ -40,6 +38,10 @@ classDiagram
     -Numero: Integer
     -Bairro: String
     -Estado: EstadosBrasil
+  }
+  class Socio{
+    -Id: Integer
+    -Quota_participaçao: Float
   }
 
   class Franquia{
