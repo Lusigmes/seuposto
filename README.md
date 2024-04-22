@@ -54,9 +54,9 @@ classDiagram
   Pessoa "1" -- "1..*" Cliente
   Pessoa "1" -- "1" Proprietario
   Pessoa "1" -- "1..*" Socio
-  Proprietario "1..*" -- "1" Posto
-  Proprietario "1..*" -- "1" Posto
   Posto "1*" -- "1..*" Franquia
+  Proprietario "1..*" -- "1" Posto
+  Proprietario "1..*" -- "1" Posto
   
   
 ```
